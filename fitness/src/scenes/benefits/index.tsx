@@ -12,20 +12,20 @@ import ActionButton from "@/shared/ActionButton";
 
 const benefits: Array<BenefitType> = [
   {
-    icon: <UserGroupIcon className="h-6 w-6" />,
-    title: "100's of Diverse Classes",
-    description: "Choose from hundreds of classes to keep you motivated.",
+    icon: <HomeModernIcon className="h-6 w-6" />,
+    title: "Impress people",
+    description:
+      "Do a lot of pushups, which will make people say 'wow'!",
   },
   {
-    icon: <HomeModernIcon className="h-6 w-6" />,
-    title: "State of the Art Facilities",
-    description:
-      "Top of the line equipment and facilities to help you reach your fitness goals.",
+    icon: <UserGroupIcon className="h-6 w-6" />,
+    title: "Strong Muscles",
+    description: "Lift heavy things.",
   },
   {
     icon: <AcademicCapIcon className="h-6 w-6" />,
-    title: "Expert and Pro Trainers",
-    description: "Our trainers are here to help you reach your fitness goals.",
+    title: "Live Longer",
+    description: "Workouts can help you live past the heat death of the sun!",
   },
 ];
 
@@ -60,11 +60,11 @@ const Benefits = ({ setSelectedPage }: Props) => {
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <HText>MORE THAN JUST A GYM.</HText>
+          <HText>MORE THAN JUST WORKOUTS.</HText>
           <p className="my-5 text-sm">
-            We provide world class fitness equipment, trainers and classes to
-            get you to your ultimate fitness goals with ease. We provide true
-            care into each and every member.
+            Our workout plan can provide a total lifestyle revamp. Don't worry about your enemies - they'll be so 
+            impressed by your muscles that they'll bow to your feet. You'll live so long it'll just be you and the 
+            stars someday. Your brain will grow three sizes and so will your heart - like the Grinch! 
           </p>
         </motion.div>
         <motion.div
@@ -105,8 +105,8 @@ const Benefits = ({ setSelectedPage }: Props) => {
                   }}
                 >
                   <HText>
-                    MILLIONS OF HAPPY MEMBERS GETTING{" "}
-                    <span className="text-primary-500">FIT</span>.
+                    MILLIONS OF HAPPY GYM-GOERS{" "}
+                    <span className="text-primary-500">YIPEE</span>!
                   </HText>
                 </motion.div>
               </div>
@@ -123,18 +123,12 @@ const Benefits = ({ setSelectedPage }: Props) => {
             >
               <p className="my-5">
                 At Megan's Gym, we focus on helping our members achieve their
-                fitness goals through tailored workout plans, modern equipment,
-                and an encouraging community. Our certified trainers and
-                supportive environment ensure you stay on track, whether you're
-                just starting out or taking your fitness to the next level.
+                fitness dreams and more! Lift a car! Punch through a mountain! Do it all!
               </p>
               <p className="mb-5">
                 {" "}
-                Join the millions of happy members who have transformed their
-                lives with us. We offer personalized coaching, flexible class
-                schedules, and an array of fitness programs designed to fit your
-                lifestyle. At Megan's Gym, it's not just about working out—it's
-                about building lasting health and well-being.
+                Follow our workout plan and you'll be stronger than One-Punch-Man! You'll be Half-Punch-Person:
+                That's a Megan Guarantee. Push Sisyphus's rock all the way up the hill! 
               </p>
             </motion.div>
             <div className="relative mt-16">
