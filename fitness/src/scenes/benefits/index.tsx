@@ -127,7 +127,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
               </p>
               <p className="mb-5">
                 {" "}
-                Follow our workout plan and you'll be stronger than One-Punch-Man! You'll be Half-Punch-Person:
+                Follow our workout plan and you'll be stronger than One-Punch-Man!
                 That's a Megan Guarantee. Push Sisyphus's rock all the way up the hill! 
               </p>
             </motion.div>
