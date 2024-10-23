@@ -7,11 +7,16 @@
 html,
 body,
 #root,
-.app{
+.app {
   height: 100%;
   width: 100%;
   font-family: "Ubuntu", serif;
   @apply text-gray-500;
+}
+
+.md\:before\:content-evolvetext::before {
+  content: "EVOLVE";
+  opacity: 0.6;
 }
 
 /* 

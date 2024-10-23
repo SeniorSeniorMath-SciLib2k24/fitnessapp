@@ -1,8 +1,8 @@
 // import './App.css';
 import Navbar from "@/scenes/navbar";
+import Home from "@/scenes/home";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
-import { use } from "framer-motion/client";
 
 //does exist in the actual build
 // enum SelectedPage {
@@ -40,6 +40,7 @@ function App() {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
+      <Home setSelectedPage={setSelectedPage} />
     </div>
   );
 }
