@@ -1,32 +1,50 @@
 import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
 const Workouts = ({ setSelectedPage }: Props) => {
-  const [iframeHeight, setIframeHeight] = useState<number>(500);
+  const [iframeHeight, setIframeHeight] = useState<number>(800);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const adjustIframeHeight = () => {
+    const iframe = iframeRef.current;
+    if (iframe && iframe.contentWindow) {
+      const newHeight =
+        iframe.contentWindow.document.documentElement.scrollHeight;
+      setIframeHeight(newHeight + 300);
+    }
+  };
 
   useEffect(() => {
-    const handleIframeMessage = (event: MessageEvent) => {
-      // Ensure the message comes from the correct source
-      if (event.origin !== "https://comp491-todolist.netlify.app") return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
 
-      const { iframeHeight } = event.data;
-      if (iframeHeight) {
-        setIframeHeight(iframeHeight);
-      }
+    // Adjust height on iframe load
+    iframe.addEventListener("load", adjustIframeHeight);
+
+    // Observer to handle content changes in iframe
+    const observer = new MutationObserver(adjustIframeHeight);
+    if (iframe.contentDocument) {
+      observer.observe(iframe.contentDocument, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    return () => {
+      iframe.removeEventListener("load", adjustIframeHeight);
+      observer.disconnect();
     };
-
-    window.addEventListener("message", handleIframeMessage);
-    return () => window.removeEventListener("message", handleIframeMessage);
   }, []);
 
   return (
     <section id="workouts" className="w-full bg-primary-100 pt-40">
       <motion.iframe
+        ref={iframeRef}
         src="https://comp491-todolist.netlify.app/"
         title="Workouts"
         className="w-full"
