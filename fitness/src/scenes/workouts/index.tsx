@@ -25,7 +25,7 @@ const Workouts = ({ setSelectedPage }: Props) => {
   }, []);
 
   return (
-    <section id="workouts" className="w-full bg-primary-100 py-40">
+    <section id="workouts" className="w-full bg-primary-100 pt-40">
       <motion.iframe
         src="https://comp491-todolist.netlify.app/"
         title="Workouts"
