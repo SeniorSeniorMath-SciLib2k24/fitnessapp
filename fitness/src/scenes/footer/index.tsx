@@ -41,6 +41,12 @@ const Footer = () => {
             >
               Contact Us
             </AnchorLink>
+            <AnchorLink
+              href="#workouts"
+              className="transition-duration-500 hover:text-primary-500"
+            >
+              Workouts
+            </AnchorLink>
           </div>
         </div>
         <div>
