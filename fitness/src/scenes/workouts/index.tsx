@@ -13,7 +13,7 @@ const Workouts = ({ setSelectedPage }: Props) => {
         title="Workouts"
         className="w-full"
         width="100%"
-        height="1000px"
+        height="900px"
         onViewportEnter={() => setSelectedPage(SelectedPage.Workouts)}
         style={{ border: "none", overflow: "hidden" }}
       ></motion.iframe>
