@@ -1,4 +1,5 @@
 import { SelectedPage } from "@/shared/types";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import ContactUsPageGraphic from "@/assets/ContactUsPageGraphic.png";
@@ -9,21 +10,19 @@ type Props = {
 };
 
 const ContactUs = ({ setSelectedPage }: Props) => {
+  const formRef = useRef<HTMLFormElement>(null);
   const inputStyles = `mb-5 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white`;
 
   const {
     register,
-    trigger,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = async (e: any) => {
+  const onSubmit = async () => {
     //any used bc type is ambiguous
-    const isValid = await trigger();
-    if (!isValid) {
-      e.preventDefault();
-    }
+    formRef.current?.submit();
   };
   return (
     <section id="contactus" className="mx-auto w-5/6 pb-32 pt-24">
@@ -65,8 +64,9 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             }}
           >
             <form
+              ref={formRef}
               target="_blank"
-              onSubmit={onSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               action="https://formsubmit.co/megantriplett10@gmail.com"
               method="POST"
             >
@@ -93,8 +93,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 placeholder="EMAIL"
                 {...register("email", {
                   required: true,
-                  // maxLength: 100,
-                  pattern: /^[A_Z0-9._%+-]+@[A_Z0-9.-]+\.[A-Z]{2,}$/i,
+                  pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 })}
               />
               {errors.email && (
