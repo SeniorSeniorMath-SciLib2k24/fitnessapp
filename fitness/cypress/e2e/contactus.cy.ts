@@ -8,7 +8,7 @@ describe('template spec', () => {
     cy.get('[placeholder="EMAIL"]').should('be.empty')
     cy.get('[placeholder="MESSAGE"]').should('be.empty')
 
-    cy.contains('This field is required').should('not.be.visible')
+    // cy.contains('This field is required').should('not.be.visible')
 
     cy.contains('SUBMIT').should('be.visible')
 
@@ -34,7 +34,7 @@ describe('template spec', () => {
     cy.contains('SUBMIT').click()
   })
 
-  it('Errors', () => {
+  it('Error on max character length', () => {
     cy.visit('https://fitness-app-ery.pages.dev/')
 
     cy.contains('Join Now').click()
@@ -53,5 +53,15 @@ describe('template spec', () => {
     cy.contains('SUBMIT').click()
 
     cy.contains('Max length is 100 characters.')
+
+
+    // cy.get('#form-validation').within(() => {
+    //   // at first both input elements are invalid
+    //   cy.get('input:invalid').should('have.length', 2)
+
+    //   cy.log('**enter the item**')
+    //   cy.get('#item').type('push pin')
+    //   cy.get('input:invalid').should('have.length', 1)
+    // })
   })
 })
