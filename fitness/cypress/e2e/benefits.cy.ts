@@ -1,9 +1,10 @@
 /// <reference types="cypress" />
 
-describe("Homepage E2E Tests", () => {
+describe("Benefits page E2E Tests", () => {
   beforeEach(() => {
     cy.viewport(1280, 800); // desktop view
-    cy.visit("https://fitness-app-ery.pages.dev/#benefits");
+    cy.visit("/");
+    cy.contains("Benefits").click();
   });
 
   it("should load the benefits page and display the main sections", () => {
@@ -12,49 +13,53 @@ describe("Homepage E2E Tests", () => {
     cy.contains(
       "Our workout plan can provide a total lifestyle revamp. Don't worry about your enemies - they'll be so impressed by your muscles that they'll bow to your feet. You'll live so long it'll just be you and the stars someday. Your brain will grow three sizes and so will your heart - like the Grinch!",
     ).should("be.visible");
-    cy.get('img[alt="forbes-sponsor"]').should("be.visible");
-    cy.get('img[alt="fortune-sponsor"]').should("be.visible");
-    cy.get('img[alt="redbull-sponsor"]').should("be.visible");
+    cy.contains("Impress people").should("be.visible");
+    cy.contains(
+      "Do a lot of pushups, which will make people say 'wow'!",
+    ).should("be.visible");
+    cy.contains("Strong Muscles").should("be.visible");
+    cy.contains("Lift heavy things.").should("be.visible");
+    cy.contains("Live Longer").should("be.visible");
+    cy.contains(
+      "Workouts can help you live past the heat death of the sun!",
+    ).should("be.visible");
+
+    // Select each benefit card and confirm it contains an SVG icon
+    cy.get(".mt-5.rounded-md").each(($el) => {
+      cy.wrap($el).find("svg[data-slot='icon']").should("be.visible");
+      cy.wrap($el).contains("Learn More").should("be.visible");
+    });
+
+    cy.get('img[alt="benefits-page-graphic"]').should("be.visible");
+    cy.contains("MILLIONS OF HAPPY GYM-GOERS YIPEE!").should("be.visible");
+    cy.contains(
+      "At Megan's Gym, we focus on helping our members achieve their fitness dreams and more! Lift a car! Punch through a mountain! Do it all!",
+    ).should("be.visible");
+    cy.contains(
+      "Follow our workout plan and you'll be stronger than One-Punch-Man! That's a Megan Guarantee. Push Sisyphus's rock all the way up the hill!",
+    ).should("be.visible");
+    cy.get(".before\\:content-abstractwaves").should("be.visible");
+    cy.get(".before\\:content-sparkles").should("be.visible");
+    cy.get("section#benefits")
+      .find('a[href="#contactus"]')
+      .contains("Join Now")
+      .should("be.visible");
   });
 
-  //   it('should navigate to Contact Us on "Join Now" and "Learn More" button clicks and apply active styling', () => {
-  //     cy.contains("Join Now").should("be.visible").click();
-  //     cy.get(`a[href="#contactus"]`).should("have.class", "text-primary-500");
+  it('should navigate to Contact Us on "Join Now" button click and apply active styling', () => {
+    cy.get("section#benefits")
+      .find('a[href="#contactus"]')
+      .contains("Join Now")
+      .should("be.visible")
+      .click();
+    cy.get(`a[href="#contactus"]`).should("have.class", "text-primary-500");
+  });
 
-  //     cy.visit("https://fitness-app-ery.pages.dev/");
-  //     cy.contains("Learn More").should("be.visible").click();
-  //     cy.get(`a[href="#contactus"]`).should("have.class", "text-primary-500");
-  //   });
-
-  //   it("should not have sponsor images visible for smaller screens", () => {
-  //     cy.viewport(375, 667); // mobile view
-  //     cy.get('img[alt="forbes-sponsor"]').should("not.exist");
-  //     cy.get('img[alt="fortune-sponsor"]').should("not.exist");
-  //     cy.get('img[alt="redbull-sponsor"]').should("not.exist");
-  //   });
-
-  //   it("should display navbar links and apply active styling on click without URL change", () => {
-  //     cy.get("nav > div:first-child").should("be.visible");
-
-  //     cy.contains("Benefits").click();
-  //     cy.get(`a[href="#benefits"]`).should("have.class", "text-primary-500");
-
-  //     cy.contains("Our Classes").click();
-  //     cy.get(`a[href="#ourclasses"]`).should("have.class", "text-primary-500");
-
-  //     cy.contains("Contact Us").click();
-  //     cy.get(`a[href="#contactus"]`).should("have.class", "text-primary-500");
-
-  //     cy.contains("Workouts").click();
-  //     cy.get(`a[href="#workouts"]`).should("have.class", "text-primary-500");
-  //   });
-
-  //   it("should toggle the mobile menu", () => {
-  //     cy.viewport(375, 667);
-  //     cy.get(".rounded-full.bg-secondary-500").click();
-  //     cy.contains("Home").should("be.visible");
-  //     cy.contains("Benefits").should("be.visible");
-  //     cy.contains("Our Classes").should("be.visible");
-  //     cy.contains("Contact Us").should("be.visible");
-  //   });
+  it('should navigate to Contact Us on "Learn More" button click and apply active styling', () => {
+    cy.get(".mt-5.rounded-md").each(($el) => {
+      cy.wrap($el).find("svg[data-slot='icon']").should("be.visible");
+      cy.wrap($el).contains("Learn More").should("be.visible").click();
+      cy.get(`a[href="#contactus"]`).should("have.class", "text-primary-500");
+    });
+  });
 });
